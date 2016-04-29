@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+      http://www.springframework.org/schema/beans/spring-beans.xsd
+      http://www.springframework.org/schema/context 
+      http://www.springframework.org/schema/context/spring-context.xsd">
+		
+
+	<!-- Simple bean with a constructor arg based on the type -->
+	<bean id="helloWorldBean" class="edu.fatec.spring.helloworld.MessageBean">
+		<constructor-arg type="java.lang.String" value="Hello World!!!!"/>
+	</bean>
+	
+	<!-- Simple bean with multiple args based on index -->
+	<bean id="helloWorldBeanWithArgs" class="edu.fatec.spring.helloworld.MessageBean">
+		<constructor-arg index="0" value="Hello World!!!!"/>
+		<constructor-arg index="1" value="25"/>
+		
+		
+		<!-- This refers to another bean called messageHeader -->
+		<constructor-arg index="2" ref="messageHeader"/>
+	</bean>
+	
+	<!-- Simple bean with multiple properties -->
+	<bean id="helloWorldBeanWithProperties" class="edu.fatec.spring.helloworld.MessageBean">
+		<property name="message" value="Hello World! With Properties!!"/>
+		<property name="id" value="25"/>
+		<!-- This refers to another bean called otherbean -->
+		<property name="header" ref="otherbean"/>
+	</bean>
+	
+	<!-- 
+		This is another bean called messageHeader, which is refered in other beans 
+		We declared with a composed name messageHeader and otherbean. Both names are available for injection
+	-->
+	<bean name="messageHeader otherbean" class="edu.fatec.spring.helloworld.MessageHeader" scope="singleton">
+		<property name="content" value="${edu.fatec.spring.helloworld.headerContent}"/>
+		<property name="headerName" value="${edu.fatec.spring.helloworld.headerName}"/>
+	</bean>
+	
+	<!-- 
+		Creating bean using a custom factory 
+	-->
+	<bean name="FactoryCreated" factory-bean="messageFactory" factory-method="factory"/>
+	
+	
+	<!-- Factory bean definition, we use the init-method in order to initialize the bean -->
+	
+	<bean id="messageFactory" class="edu.fatec.spring.helloworld.CustomBeanFactory" init-method="init" destroy-method="destroy"/>
+	
+	<context:property-placeholder location="classpath:header-config.properties" />
+	
+	<!-- If we want to scan for annotations
+		<context:component-scan base-package="edu.fatec.spring.helloworld" />
+	 -->
+	 <!--
+		<bean class="edu.fatec.spring.helloworld.BeanProcessorLogger"/>
+	 -->
+
+</beans>
