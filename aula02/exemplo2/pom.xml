@@ -1,0 +1,99 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi=
+"http://www.w3.org/2001/XMLSchema-instance"
+ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+http://maven.apache.org/xsd/maven-4.0.0.xsd">
+ 	
+
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>edu.fatec.spring.exemplo2</groupId>
+ 	<artifactId>spring-exemplo2</artifactId>
+ 	<version>1.0.0-SNAPSHOT</version>
+ 	<packaging>jar</packaging>
+	
+
+	<properties>
+		<java.version>1.8</java.version>
+		<junit.version>4.12</junit.version>
+		<spring.version>4.2.5.RELEASE</spring.version>
+	</properties>
+
+
+
+	<dependencies>
+		
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>${junit.version}</version>
+			<scope>test</scope>
+		</dependency>
+
+	</dependencies>
+
+
+
+
+
+
+	<build>
+		 <plugins>
+      			<plugin>
+       				<groupId>org.apache.maven.plugins</groupId>
+        			<artifactId>maven-compiler-plugin</artifactId>
+        			<version>3.5.1</version>
+        			<configuration>
+          				<source>${java.version}</source>
+         				<target>${java.version}</target>
+        			</configuration>
+			</plugin>
+
+			<plugin>
+  				<groupId>org.codehaus.mojo</groupId>
+ 				<artifactId>exec-maven-plugin</artifactId>
+  				<version>1.4.0</version>
+ 				<executions>	
+   					<execution>
+						<phase>integration-test</phase> <!-- Just execute our application  -->
+      						<goals>
+        						<goal>java</goal>
+      						</goals>
+    					</execution>
+  				</executions>
+  				<configuration>
+   					 <mainClass>edu.fatec.spring.example2.SpringAppExample</mainClass>
+   					 <arguments>
+     						
+					</arguments>
+  				</configuration>
+			</plugin>
+			<plugin>
+				<artifactId>maven-assembly-plugin</artifactId> <!-- Creates an executable jar  -->
+				<version>2.4.1</version>
+				<configuration>
+					<finalName>generate</finalName>
+					<archive>
+						<manifest>
+							<mainClass>edu.fatec.spring.helloworld.SpringAppExemple</mainClass>
+						</manifest>
+					</archive>
+					<descriptorRefs>
+						<descriptorRef>jar-with-dependencies</descriptorRef> <!-- The JAR will include all the dependencies -->
+					</descriptorRefs>
+					<appendAssemblyId>false</appendAssemblyId>
+					<outputDirectory>dist</outputDirectory> <!-- Defines a output folder for generated jar -->
+				</configuration>
+			</plugin>
+		</plugins>
+
+	</build>
+
+
+
+
+</project>
