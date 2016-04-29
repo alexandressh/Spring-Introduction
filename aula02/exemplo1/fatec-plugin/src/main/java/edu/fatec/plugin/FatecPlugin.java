@@ -8,7 +8,7 @@ import org.apache.maven.plugin.MojoFailureException;
 /**
 
 *	
-* @goal levi		
+* @goal hello		
 *
 *
 */
