@@ -7,8 +7,10 @@
       http://www.springframework.org/schema/context 
       http://www.springframework.org/schema/context/spring-context.xsd">
 	
-	<bean id="myBean" class="edu.fatec.di.Movie">
+	<bean id="myBean" name="myFirstBean, my1thBean" class="edu.fatec.di.Movie">
 		<property name="name" value = "Avengers"/>
+		<property name="id" value ="100"/>
+		<property name="duration" value ="3400"/>
 	</bean>
 	
 	<bean id="myBean2" class="edu.fatec.di.Movie">
@@ -16,5 +18,27 @@
 		<constructor-arg type="java.lang.String" value="Avengers"/>
 		<constructor-arg type="java.lang.Long" value="2400"/>
 	</bean>
+	
+	<bean id="myBean3" class="edu.fatec.di.Movie">
+		<constructor-arg index="0" value="2"/>
+		<constructor-arg index="1" value="Capitão America"/>
+		<constructor-arg index="2" value="3400"/>
+	</bean>
+	
+	<bean id="movieFinder" 
+			class="edu.fatec.di.InMemoryMovieFinder" 
+			init-method="init"
+			destroy-method="destroy">
+		<!-- 
+			<constructor-arg type="java.io.File" ref="file"/>
+		 -->
+	</bean>
+	
+	<bean id="file" class="java.io.File">
+		<constructor-arg index="0" value="src/main/resources/movies.csv"/>
+	</bean>
+	
+	
+	
 	
 </beans>

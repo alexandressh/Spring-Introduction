@@ -10,7 +10,7 @@ public class Movie {
 		System.out.println("Criando meu primeiro bean");
 	}
 
-	public Movie(long id, String name, long duration) {
+	public Movie(Long id, String name, Long duration) {
 		this.id = id;
 		this.name = name;
 		this.duration = duration;
@@ -25,6 +25,7 @@ public class Movie {
 		return name;
 	}
 	public void setName(String name) {
+		System.out.println("Setando nome " + name);
 		this.name = name;
 	}
 	public long getDuration() {
