@@ -9,7 +9,7 @@ public class InMemoryMovieFinder implements MovieFinder{
 	private static final List<Movie> movies = new ArrayList<>();
 	
 	public InMemoryMovieFinder () {
-		movies.add(new Movie(1L, "Batman vs Superman", 200 * 60));
+		movies.add(new Movie(1L, "Batman vs Superman", 200L));
 	} 
 	
 	@Override

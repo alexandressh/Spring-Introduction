@@ -1,10 +1,16 @@
 package edu.fatec.di;
 
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
 public class MovieFinderApp {
 
 	
+	
 	public static void main(String [] args){
-		MovieSearch search = new MovieSearch();
-		System.out.println(search.findByName("a"));
+		ApplicationContext ctx = new ClassPathXmlApplicationContext("context.xml");
+		Movie movie =  ctx.getBean("myBean", Movie.class);
+		System.out.println(movie.getName());
+		Movie movie2 =  ctx.getBean("myBean2", Movie.class);
 	}
 }

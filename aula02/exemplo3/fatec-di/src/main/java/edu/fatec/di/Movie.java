@@ -2,11 +2,15 @@ package edu.fatec.di;
 
 public class Movie {
 	
-	private long id;
+	private Long id;
 	private String name;
-	private long duration;
-	
-	public Movie(Long id, String name, long duration) {
+	private Long duration;
+
+	public Movie () {
+		System.out.println("Criando meu primeiro bean");
+	}
+
+	public Movie(long id, String name, long duration) {
 		this.id = id;
 		this.name = name;
 		this.duration = duration;
