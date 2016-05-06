@@ -29,7 +29,6 @@ public class DeliveryController {
 	
 	@ExceptionHandler(BusinessException.class)
 	public ResponseEntity<CustomMessage> genericException(BusinessException ex){
-		System.out.println(ex.getMessage());
 		return new ResponseEntity<>(new CustomMessage(404, "Invalid entity: " + ex.getMessage()), HttpStatus.BAD_REQUEST);
 	}
 	
