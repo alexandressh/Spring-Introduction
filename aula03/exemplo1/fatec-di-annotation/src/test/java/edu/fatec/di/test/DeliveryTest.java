@@ -15,12 +15,11 @@ public class DeliveryTest {
 		Product product = new Product();
 		product.setId(100L);
 		product.setDescription("Test product");
-		product.setValue(12002D);
+		product.setValue(1200D);
 		
 		Delivery delivery = new Delivery();
 		delivery.setProductId(100L);
 		delivery.setValue(100D);
-		
 		Assert.isTrue(CalculationUtils.getCalculation(product, delivery).getValue() == 1218.00, "Calculation value does not match");
 		
 	}
