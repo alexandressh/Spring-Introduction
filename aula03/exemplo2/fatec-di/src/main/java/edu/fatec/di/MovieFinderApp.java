@@ -1,31 +1,30 @@
 package edu.fatec.di;
 
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
 
+import edu.fatec.di.services.MovieService;
+
+@Configuration
+@ComponentScan(basePackages = {
+		"edu.fatec.di.configuration",
+		"edu.fatec.di.services"
+})
 public class MovieFinderApp {
 
 	
 	
 	public static void main(String [] args){
-		ApplicationContext ctx = new ClassPathXmlApplicationContext("context.xml");
-		Movie movie =  ctx.getBean("myFirstBean", Movie.class);
-		System.out.println(movie);
-		Movie movie2 =  ctx.getBean("myBean2", Movie.class);
-		System.out.println(movie2);
-		Movie movie3 =  ctx.getBean("myBean3", Movie.class);
-		System.out.println(movie3);
+		ApplicationContext ctx = new AnnotationConfigApplicationContext(MovieFinderApp.class);
 		
-		MovieFinder finder = ctx.getBean(MovieFinder.class);
+		MovieService service = ctx.getBean(MovieService.class);
 		
-		System.out.println("Imprimindo filmes do arquivo csv: ");
+		service.findMovies()
+		.forEach(System.out::println);
 		
-		finder
-			.findAll()
-			.stream()
-			.forEach(w -> System.out.println(w));
-		
-		((ClassPathXmlApplicationContext)ctx).close();
+		((AnnotationConfigApplicationContext)ctx).close();
 		
 	}
 }

@@ -7,9 +7,8 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.beans.factory.InitializingBean;
 
-public class CsvMovieFinder implements MovieFinder, InitializingBean{
+public class CsvMovieFinder implements MovieFinder{
 
 	private File file;
 	
@@ -45,11 +44,5 @@ public class CsvMovieFinder implements MovieFinder, InitializingBean{
 		return new ArrayList<>();
 	}
 
-	@Override
-	public void afterPropertiesSet() throws Exception {
-		System.out.println("afterPropertiesSet()");
-	}
-
-	
 	
 }

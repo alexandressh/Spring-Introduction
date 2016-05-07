@@ -12,7 +12,7 @@ public class TestApp {
 	public static void main(String [] args) {
 		ApplicationContext ctx = new ClassPathXmlApplicationContext("context.xml");
 		OAM o = ctx.getBean(OAM.class);
-		o.processRequest();
+		o.transformRequest();
 		((ClassPathXmlApplicationContext)ctx).close();
 		
 		
