@@ -7,6 +7,8 @@
       http://www.springframework.org/schema/context 
       http://www.springframework.org/schema/context/spring-context.xsd">
 	
+	<import resource="context2.xml"/>
+		
 	<bean id="myBean" name="myFirstBean, my1thBean" class="edu.fatec.di.Movie">
 		<property name="name" value = "Avengers"/>
 		<property name="id" value ="100"/>
@@ -25,20 +27,29 @@
 		<constructor-arg index="2" value="3400"/>
 	</bean>
 	
-	<bean id="movieFinder" 
-			class="edu.fatec.di.InMemoryMovieFinder" 
-			init-method="init"
-			destroy-method="destroy">
+	<bean id="movieFinder"
+			factory-bean="movieFinderFactory"
+			factory-method="createBean"
+			scope="prototype">
 		<!-- 
 			<constructor-arg type="java.io.File" ref="file"/>
 		 -->
 	</bean>
 	
+	<bean id="movieFinder2"
+			class="edu.fatec.di.CsvMovieFinder" primary="true">
+			<constructor-arg index="0" ref="file"/>		
+	</bean>
+	
+	<bean id="movieFinderFactory" class="edu.fatec.di.MovieFinderFactory"/>
+	
+	
 	<bean id="file" class="java.io.File">
 		<constructor-arg index="0" value="src/main/resources/movies.csv"/>
 	</bean>
 	
+<!-- 	<bean id="movieService" class="edu.fatec.di.services.MovieServiceImpl"/> -->
 	
-	
+	<context:component-scan base-package="edu.fatec.di"/>
 	
 </beans>

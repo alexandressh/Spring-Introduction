@@ -7,7 +7,7 @@ public class DatabaseMovieFinder implements MovieFinder{
 
 	@Override
 	public List<Movie> findAll() {
-		//Do some crazy stuff to read movies from database.
+		System.out.println(this.getClass().getSimpleName());
 		return new ArrayList<>();
 	}
 
