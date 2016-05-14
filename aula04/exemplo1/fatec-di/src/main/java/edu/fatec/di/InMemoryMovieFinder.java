@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.InitializingBean;
+import org.springframework.stereotype.Service;
 
-public class InMemoryMovieFinder implements MovieFinder, 
-InitializingBean{
-
+@Service
+public class InMemoryMovieFinder implements MovieFinder, InitializingBean{
 	
 	private static final List<Movie> movies = new ArrayList<>();
 	
@@ -30,6 +30,12 @@ InitializingBean{
 	}
 	public void destroy(){
 		System.out.println("Destruindo bean!");
+	}
+
+	@Override
+	public Movie create(Movie movie) {
+		movies.add(movie);
+		return movie;
 	}
 
 }

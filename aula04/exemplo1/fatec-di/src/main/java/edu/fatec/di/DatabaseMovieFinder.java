@@ -11,4 +11,10 @@ public class DatabaseMovieFinder implements MovieFinder{
 		return new ArrayList<>();
 	}
 
+	@Override
+	public Movie create(Movie movie) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

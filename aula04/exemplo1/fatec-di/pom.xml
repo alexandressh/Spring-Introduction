@@ -6,11 +6,17 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<groupId>edu.fatec.di</groupId>
  	<artifactId>fatec-di</artifactId>
  	<version>1.0.0-SNAPSHOT</version>
- 	<packaging>jar</packaging>
+ 	<packaging>war</packaging>
+ 	
+ 	<parent>
+	    <groupId>org.springframework.boot</groupId>
+	    <artifactId>spring-boot-starter-parent</artifactId>
+	    <version>1.3.5.RELEASE</version>
+	</parent>
 	
 
 	<properties>
-		<java.version>1.8</java.version>
+		<java.version>1.7</java.version>
 		<junit.version>4.12</junit.version>
 		<spring.version>4.2.5.RELEASE</spring.version>
 	</properties>
@@ -19,10 +25,14 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
 	<dependencies>
 		<dependency>
-        	<groupId>org.springframework</groupId>
-        	<artifactId>spring-context</artifactId>
-        	<version>4.2.5.RELEASE</version>
-    	</dependency>
+		    <groupId>org.springframework.boot</groupId>
+		    <artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		<dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-tomcat</artifactId>
+            <scope>provided</scope>
+        </dependency>
 	</dependencies>
 
 
@@ -38,28 +48,7 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
          				<target>${java.version}</target>
         			</configuration>
       			</plugin>
-
-			<plugin>
-				<groupId>edu.fatec.plugin</groupId>
- 				<artifactId>fatec-plugin</artifactId>
- 				<version>1.0.0-SNAPSHOT</version>
-				<configuration>
-          				<executions>
-							<id>1</id>	
-							<phase>validate</phase> <!-- Just to print the hello world message  -->
-							<execution>
-								<goals>
-        							<goal>hello</goal>
-      							</goals>
-							</execution>
-						</executions>
-         			</configuration>
-			</plugin>
-
 		</plugins>	
 	</build>
-
-
-
 
 </project>
